@@ -1,0 +1,548 @@
+/* Apply styling only for p5.js project card */
+.p5js-card .text-content {
+    width: 100%;
+    max-width: 100%; /* Ensures the text matches the width of the image */
+    padding: 10px;
+    text-align: center;
+    box-sizing: border-box;
+    overflow: hidden;
+    white-space: normal; /* Ensure text wraps correctly */
+}
+
+/* Specific adjustment for text width based on image size */
+.p5js-card .text-content p,
+.p5js-card .text-content h3 {
+    width: 100%; /* Ensure text content doesn't overflow */
+    max-width: 100%; /* Restrict the width to the parent's width */
+}
+
+/* Optional: Add a specific width for larger screens */
+@media (min-width: 768px) {
+    .p5js-card {
+        max-width: 500px; /* Keep this as desired for larger screens */
+    }
+}
+
+
+
+/* Ensure the modal itself does not show a scrollbar */
+.modal {
+    display: none; /* Hidden until triggered */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    overflow: hidden; /* Hide the scrollbar on the modal */
+}
+
+/* Modal content layout */
+.modal-content {
+    background: white;
+    padding: 40px 20px 20px 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 1000px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-height: 80vh;
+    overflow-y: auto; /* Allow vertical scrolling but no horizontal scroll */
+    scrollbar-width: none; /* Hides scrollbar in Firefox */
+}
+
+
+/* For Chrome, Safari, and Opera */
+.modal-content::-webkit-scrollbar {
+    display: none; /* Hides scrollbar */
+}
+
+
+/* Modal image container */
+.modal-images-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow images to wrap to the next row */
+    justify-content: center; /* Center the images horizontally */
+    gap: 20px; /* Space between images */
+    width: 100%;
+    align-items: center; /* Ensure items are vertically centered */
+}
+
+/* Style for each image */
+.modal-images-container img {
+    width: 30% !important; /* Ensure 3 images fit per row */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensure image fits without cropping */
+    display: block; /* Prevent images from displaying inline */
+    margin-bottom: 20px; /* Space at the bottom of each image */
+    border-radius: 10px; /* Rounded corners */
+}
+
+/* Adjusting the layout for larger screens */
+@media (min-width: 768px) {
+    .modal-images-container img {
+        width: 30%; /* 3 images per row */
+    }
+}
+
+@media (min-width: 1024px) {
+    .modal-images-container img {
+        width: 22%; /* 4 images per row */
+    }
+}
+
+/* Ensure that when only one image is in the row, it is centered */
+.modal-images-container img:nth-child(1):only-child {
+    width: 60% !important; /* For only one image, make it bigger and centered */
+    margin: 0 auto;
+}
+
+/* Modal Text Content */
+.modal-text {
+    text-align: center; /* Center-align the text */
+    width: 100%; /* Ensure it takes full width of the container */
+    padding: 0 20px; /* Add some padding to the sides for better spacing */
+}
+
+.modal-text h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.modal-text p {
+    font-size: 1rem;
+    color: #666;
+}
+
+
+/* Ensure modal close button is positioned correctly */
+#close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Initially hide the main image */
+.main-image {
+    display: none;
+}
+
+
+
+
+/* Base Styles */
+body {
+    margin: 0;
+    font-family: "proxima-nova", sans-serif;
+    line-height: 1.6;
+    color: #2B2B2B;
+    background-color: #F7F7F7;
+}
+
+html, body {
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+    overflow-y: auto;   /* Enables scrolling but hides scrollbar */
+    scrollbar-width: none; /* Hides scrollbar in Firefox */
+    -ms-overflow-style: none; /* Hides scrollbar in Internet Explorer/Edge */
+    margin: 0;
+    padding: 0;
+}
+
+/* For Chrome, Safari, and Opera */
+body::-webkit-scrollbar {
+    display: none; /* Hides scrollbar */
+}
+
+
+header {
+    background-color: #1D1D1D;
+    color: #FFFFFF;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center both text and logo */
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px 20px;
+    gap: 40px; /* Adds space between text and logo */
+}
+
+
+
+
+/* Left section for text */
+.header-text {
+    flex: 1; /* Takes up half of the header */
+    text-align: left; /* Aligns text properly */
+    padding-left: 50px; /* Add space from left */
+    
+}
+
+
+
+
+
+/* Right section for spinning logo */
+.header-logo {
+    flex: 1; /* Takes up half of the header */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+#three-container {
+    width: 250px; /* Set specific width */
+    height: 250px; /* Prevents it from getting too big */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+
+
+
+header h1 {
+    font-size: 4rem; /* Adjust size as needed */
+    text-transform: uppercase;
+    letter-spacing: 3px; /* Slight space for elegance */
+    font-size: 5rem;
+    line-height: 1;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    text-shadow: 3px 3px 0px #b99a45;
+
+    font-family: "proxima-nova", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+
+}
+
+header p {
+    font-size: 1.2rem;
+    font-weight: lighter;
+    text-shadow: none;
+}
+
+nav {
+    background-color: #2C2C2C;
+    text-align: center;
+    padding: 15px 0;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #b99a45;
+}
+
+section {
+    text-align: center;
+}
+
+footer{
+    text-align: center;
+    padding: 3px;
+    background-color: #1D1D1D;
+    color: white;
+}
+
+/* Projects Section */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px; /* Adjust width */
+    margin: 0 auto; /* Center it */
+}
+
+
+/* Add spacing between project categories */
+.project-category {
+    margin-bottom: 50px;
+}
+
+/* Style for category headings */
+.project-category h3 {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+}
+
+
+
+
+h2{
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+}
+
+
+
+
+
+.project-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+}
+
+/* Container for images and p5.js sketch */
+.image-container {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+
+.image-container img, #sketch-container canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+.project-card:hover .image-container img,
+.project-card:hover #sketch-container canvas {
+    transform: scale(1.1);
+}
+
+/* Fade overlay */
+.image-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+    pointer-events: none;
+}
+
+/* Text content */
+.text-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.text-content h3 {
+    margin: 10px 0;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.text-content p {
+    margin: 0;
+    font-size: 1rem;
+    color: #666;
+}
+
+
+/*****************************************************************
+
+
+
+
+
+
+/************************************* CONTACT FORM  *//************************************* CONTACT FORM  *//************************************* CONTACT FORM  *//************************************* CONTACT FORM  */
+
+.contact-form {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box; /* Ensures padding doesn’t affect width */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-form label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+}
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+.contact-form button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 10px;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.contact-form button:hover {
+    background: #555;
+}
+
+/************************************* CONTACT FORM  *//************************************* CONTACT FORM  *//************************************* CONTACT FORM  */
+
+
+
+
+
+/* P5.js Modal Styling */
+#p5-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#p5-modal .modal-content {
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    width: 60%;
+    max-width: 800px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+#close-p5-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Match Layout to Other Project Modals */
+#p5-modal .modal-body {
+    display: flex;
+    align-items: center;
+    gap: 40px;  /* Increases space between canvas and text */
+    padding: 20px; /* Ensures content isn't too close */
+}
+
+
+/* P5.js Sketch (Left Side) */
+#p5-sketch-container {
+    width: 100%; /* Allow full width */
+    max-width: 500px; /* Prevent it from being too large */
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: visible; /* Prevents clipping */
+}
+
+#p5-sketch-container canvas {
+    width: 100% !important; /* Ensure it scales properly */
+    height: auto !important;
+    max-width: 100%;
+    border-radius: 15px; /* Keep rounded corners */
+}
+
+
+
+
+
+img[src="images/logonew.png"] {
+    width: 50px; /* Set a smaller width (adjust as needed) */
+    height: auto; /* Keep aspect ratio intact */
+    display: block; /* Ensure the image is displayed as a block */
+    margin: 20px auto; /* Add some space around the logo */
+}
+
+
+
+/* ABOUT ME ABOUT ME ABOUT ME */
+
+/* Add a box around the About Me section */
+.about {
+    background-color: #1D1D1D; /* Same color as the header */
+    color: white; /* Make text white */
+    padding: 10px; /* Add padding for spacing inside the box */
+    border-radius: 20px; /* Round the corners of the box */
+    margin: 10px auto; /* Center it and add some margin */
+    width: 60%; /* Adjust width to your preference */
+}
+
+/* Optional: Style for the section title */
+.about h2 {
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 20px; /* Space below the title */
+    text-align: center; /* Center the title */
+}
+
+/* Optional: Style for the section paragraphs */
+.about p {
+    font-size: 1.1rem;
+    line-height: 1.6; /* Better line spacing for readability */
+}
+
+
+
+
+
